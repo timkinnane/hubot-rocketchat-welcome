@@ -5,7 +5,7 @@
 #   ROCKETCHAT_USER so the bot can introduce itself using its @username
 #   WELCOME_MESSAGE String, what the bot says to new users
 #   DIRECT_WELCOME Bool (default true), welcome users by direct message, instead of posting in the room they joined
-#   GLOBAL_WELCOME Bool (default true), welcome only once per user across all room, false will welcome once per room
+#   GLOBAL_WELCOME Bool (default true), welcome only once per user across all rooms, false will welcome once per room
 #
 # Commands:
 #   hubot say welcome - Repeats the bot's welcome message.
@@ -18,7 +18,7 @@
 #   Tim Kinnane @ 4thParty
 
 botName = process.env.ROCKETCHAT_USER or robot.name
-welcomeMessage = process.env.WELCOME_MESSAGE or "Welcome, I'm @#{ botName }. If you need help, just reply with `help`"
+welcomeMessage = process.env.WELCOME_MESSAGE or "Welcome, I'm @#{ botName }. If you need help just reply with `help`"
 directWelcome = if process.env.DIRECT_WELCOME == 'false' then false else true
 globalWelcome = if process.env.GLOBAL_WELCOME == 'false' then false else true
 isDebug = if process.env.HUBOT_LOG_LEVEL == 'debug' then true else false

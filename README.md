@@ -25,7 +25,7 @@ user1>> _Has joined the channel_
 ```
 Hubot sends DM to welcome user
 ```
-hubot>> Welcome, I'm @hubot. If you need help, just reply with `help`
+hubot>> Welcome, I'm @hubot. If you need help just reply with `help`
 ```
 
 ## Configuration
@@ -36,7 +36,7 @@ Set environment variables to change behavior
 
 `DIRECT_WELCOME` Bool (default true), welcome users by direct message, instead of posting in the room they joined
 
-`GLOBAL_WELCOME` Bool (default true), welcome only once per user across all room, false will welcome once per room
+`GLOBAL_WELCOME` Bool (default true), welcome only once per user across all rooms, false will welcome once per room
 
 
 [npm-url]: https://npmjs.org/package/hubot-rocketchat-welcome
