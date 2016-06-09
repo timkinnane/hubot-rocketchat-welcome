@@ -19,7 +19,7 @@ Then add **hubot-rocketchat-welcome** to your `external-scripts.json`:
 
 ## Sample Interaction
 
-User joins Rocket.chat (and default room)
+User joins Rocket.Chat (and default room)
 ```
 user1>> _Has joined the channel_
 ```
@@ -33,7 +33,9 @@ hubot>> Welcome, I'm @hubot. If you need help, just reply with `help`
 Set environment variables to change behavior
 
 `WELCOME_MESSAGE` String, what the bot says to new users
+
 `DIRECT_WELCOME` Bool (default true), welcome users by direct message, instead of posting in the room they joined
+
 `GLOBAL_WELCOME` Bool (default true), welcome only once per user across all room, false will welcome once per room
 
 
