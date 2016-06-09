@@ -31,7 +31,7 @@ module.exports = (robot) ->
 
   # get robot brain collection pointer when DB merged in
   robot.brain.on 'loaded', =>
-    if robot.brain.get 'welcomed_users' is null
+    if robot.brain.get('welcomed_users') is null
       robot.brain.set 'welcomed_users', []
 
   # prepare user object for storing in brain
@@ -54,8 +54,7 @@ module.exports = (robot) ->
   # store welcomed user in brain
   rememberUser = (user) ->
     unless userIsKnown user
-      robot.brain.get 'welcomed_users'
-        .push user
+      robot.brain.get('welcomed_users').push user
     robot.brain.save()
 
   # send welcome message if user unrecognized, or if forced
