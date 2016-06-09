@@ -58,23 +58,25 @@ module.exports = (robot) ->
     robot.brain.save()
 
   # send welcome message if user unrecognized, or if forced
-  welcomeUser = (msg, forced = false) ->
+  # sends via direct unless told otherwise, remembers who it's sent to
+  welcomeUser = (msg, forced = false, direct = true) ->
     user = getUser(msg)
     known = userIsKnown user
     if forced or not known
-      msg.send welcomeMessage
+      if direct
+        msg.sendDirect welcomeMessage
+      else
+        msg.send welcomeMessage
       unless known
         rememberUser user
 
   # on user first entering a room with the bot
-  # send direct message welcome and remember who it's sent to
   robot.enter (msg) ->
-    welcomeUser msg
-    console.log msg
+    welcomeUser msg, false, directWelcome
 
-  # reply (channel or DM) if forced to say welcome
+  # reply in current room if forced to say welcome
   robot.respond /say welcome/, (msg) ->
-    welcomeUser msg, true
+    welcomeUser msg, true, false
 
   # register debug only listeners
   if (isDebug)
