@@ -1,5 +1,5 @@
 # hubot-rocketchat-welcome
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][coveralls-image]][coveralls-url]
+[![NPM version][npm-image]][npm-url]
 
 Script to welcome new users via a DM from hubot
 
@@ -19,16 +19,23 @@ Then add **hubot-rocketchat-welcome** to your `external-scripts.json`:
 
 ## Sample Interaction
 
+User joins Rocket.chat (and default room)
 ```
-user1>> hubot hello
-hubot>> hello!
+user1>> _Has joined the channel_
 ```
+Hubot sends DM to welcome user
+```
+hubot>> Welcome, I'm @hubot. If you need help, just reply with `help`
+```
+
+## Configuration
+
+Set environment variables to change behavior
+
+`WELCOME_MESSAGE` String, what the bot says to new users
+`DIRECT_WELCOME` Bool (default true), welcome users by direct message, instead of posting in the room they joined
+`GLOBAL_WELCOME` Bool (default true), welcome only once per user across all room, false will welcome once per room
+
 
 [npm-url]: https://npmjs.org/package/hubot-rocketchat-welcome
 [npm-image]: http://img.shields.io/npm/v/hubot-rocketchat-welcome.svg?style=flat
-[travis-url]: https://travis-ci.org/Tim Kinnane/hubot-rocketchat-welcome
-[travis-image]: http://img.shields.io/travis/Tim Kinnane/hubot-rocketchat-welcome/master.svg?style=flat
-[daviddm-url]: https://david.org/Tim Kinnane/hubot-rocketchat-welcome.svg?theme=shields.io
-[daviddm-image]: http://img.shields.io/david/Tim Kinnane/hubot-rocketchat-welcome.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/Tim Kinnane/hubot-rocketchat-welcome
-[coveralls-image]: http://img.shields.io/coveralls/Tim Kinnane/hubot-rocketchat-welcome/master.svg?style=flat

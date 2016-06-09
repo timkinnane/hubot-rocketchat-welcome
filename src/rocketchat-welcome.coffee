@@ -3,9 +3,9 @@
 #
 # Configuration:
 #   ROCKETCHAT_USER so the bot can introduce itself using its @username
-#   WELCOME_MESSAGE what the bot says to new users
-#   DIRECT_WELCOME Bool (default true) to welcome users by direct message, instead of posting in the room
-#   GLOBAL_WELCOME Bool (default true) to welcome only once per user, false will welcome per once per user AND room
+#   WELCOME_MESSAGE String, what the bot says to new users
+#   DIRECT_WELCOME Bool (default true), welcome users by direct message, instead of posting in the room they joined
+#   GLOBAL_WELCOME Bool (default true), welcome only once per user across all room, false will welcome once per room
 #
 # Commands:
 #   hubot say welcome - Repeats the bot's welcome message.
