@@ -1,13 +1,13 @@
 assert = require 'power-assert'
 sinon = require 'sinon'
 
-describe 'rocketchat-welcome-dm', ->
+describe 'rocketchat-welcome', ->
   beforeEach ->
     @robot =
       respond: sinon.spy()
       hear: sinon.spy()
 
-    require('../src/rocketchat-welcome-dm')(@robot)
+    require('../src/rocketchat-welcome')(@robot)
 
   it 'registers a respond listener', ->
     assert.ok(@robot.respond.calledWith(/hello/))

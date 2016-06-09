@@ -1,6 +1,6 @@
 {
-  "name": "hubot-rocketchat-welcome-dm",
-  "description": "Script to welcome new users via a DM from hubot",
+  "name": "hubot-rocketchat-welcome",
+  "description": "Hubot script o welcome new users to Rocket.Chat or a Rocket.Chat room (via a DM as default)",
   "version": "0.0.1",
   "author": "Tim Kinnane <tim@nestedcode.com>",
   "license": "MIT",
@@ -9,11 +9,11 @@
 
   "repository": {
     "type": "git",
-    "url": "https://github.com/timkinnane/hubot-rocketchat-welcome-dm.git"
+    "url": "https://github.com/timkinnane/hubot-rocketchat-welcome.git"
   },
 
   "bugs": {
-    "url": "https://github.com/timkinnane/hubot-rocketchat-welcome-dm/issues"
+    "url": "https://github.com/timkinnane/hubot-rocketchat-welcome/issues"
   },
 
   "dependencies": {
