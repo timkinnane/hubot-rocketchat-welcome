@@ -29,12 +29,8 @@ module.exports = (robot) ->
 
   # get robot brain collection pointer when DB merged in
   robot.brain.on 'loaded', =>
-    welcomedUsers = robot.brain.get('welcomed_users')
-    if welcomedUsers is null
+    if robot.brain.get 'welcomed_users' is null
       robot.brain.set 'welcomed_users', []
-      robot.logger.info "Welcome DMs haven't yet been sent to any users."
-    else
-      robot.logger.info "Welcome DMs already sent to #{ welcomedUsers.length } users."
 
   # prepare user object for storing in brain
   # NB: userForId returns object of class User, but when persistent memory is saved/reloaded, it loses class
@@ -48,26 +44,16 @@ module.exports = (robot) ->
   # otherwise, matches on whole user object so same user in different room will still be welcomed
   userIsKnown = (user) ->
     if globalWelcome
-      found = (u for u in robot.brain.get('welcomed_users') when u.id is user.id)[0]
-      console.log found, typeof found, typeof found is 'object'
-      return typeof found is 'object'
+      found = (u for u in robot.brain.get 'welcomed_users' when u.id is user.id)[0]
     else
-      return user in robot.brain.get('welcomed_users')
+      found = (u for u in robot.brain.get 'welcomed_users' when u.id is user.id and u.room is user.room)[0]
+    return typeof found is 'object'
 
   # store welcomed user in brain
   rememberUser = (user) ->
     unless userIsKnown user
-      robot.brain.get('welcomed_users').push user
-    robot.brain.save()
-
-  # forget we've ever met
-  forgetUser = (user) ->
-    if globalWelcome
-      user = (u for u in robot.brain.get('welcomed_users') when u.id is user.id)[0]
-      if typeof user is 'object'
-        robot.brain.get('welcomed_users').splice user, 1
-    else
-      robot.brain.get('welcomed_users').splice user, 1
+      robot.brain.get 'welcomed_users'
+        .push user
     robot.brain.save()
 
   # send welcome message if user unrecognized, or if forced
@@ -95,11 +81,13 @@ module.exports = (robot) ->
     # remove user from brain
     robot.respond /forget me/, (msg) ->
       user = getUser msg
-      forgetUser user
-      if userIsKnown user
-        msg.send "For some reason, I just can't forget you."
+      welcomedUsers = robot.brain.get 'welcomed_users'
+      if globalWelcome
+        robot.brain.set 'welcomed_users', welcomedUsers.filter (u) -> not ( u.id is user.id )
       else
-        msg.send "Who said that?"
+        robot.brain.set 'welcomed_users', welcomedUsers.filter (u) -> not ( u.id is user.id and u.room is user.room )
+      robot.brain.save()
+      msg.send if userIsKnown user then  "For some reason, I just can't forget you." else "Who said that?"
 
     # debug status of user in brain
     robot.respond /have we met/, (msg) ->
@@ -110,4 +98,4 @@ module.exports = (robot) ->
 
     # debug entire brain in console
     robot.respond /brain dump/, (msg) ->
-      console.log robot.brain
+      console.log robot.brain.get 'welcomed_users'
