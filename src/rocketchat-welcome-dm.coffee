@@ -37,8 +37,11 @@ module.exports = (robot) ->
       robot.logger.info "Welcome DMs already sent to #{ welcomedUsers.length } users."
 
   # prepare user object for storing in brain
+  # NB: userForId returns object of class User, but when persistent memory is saved/reloaded, it loses class
+  # for that reason comparison fails and causes bug recognising users, so we remove the class from the beginning
   getUser = (msg) ->
-    return robot.brain.userForId msg.message.user.id, name: msg.message.user.name, room: msg.message.room
+    user = robot.brain.userForId msg.message.user.id, name: msg.message.user.name, room: msg.message.room
+    return JSON.parse JSON.stringify user
 
   # determine if the user has been welcomed before
   # if global welcomes, matches on ID alone
