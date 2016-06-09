@@ -1,5 +1,5 @@
 # Description
-#   Hubot script o welcome new users to Rocket.Chat or a Rocket.Chat room (via a DM as default)
+#   Hubot script to welcome new users to Rocket.Chat or a Rocket.Chat room (via a DM as default)
 #
 # Configuration:
 #   ROCKETCHAT_USER so the bot can introduce itself using its @username

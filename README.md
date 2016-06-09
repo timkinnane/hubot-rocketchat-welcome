@@ -1,7 +1,7 @@
 # hubot-rocketchat-welcome
 [![NPM version][npm-image]][npm-url]
 
-Script to welcome new users via a DM from hubot
+Hubot script to welcome new users to Rocket.Chat or a Rocket.Chat room (via a DM as default)
 
 See [`src/rocketchat-welcome.coffee`](src/rocketchat-welcome.coffee) for full documentation.
 
