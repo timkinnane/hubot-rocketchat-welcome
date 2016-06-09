@@ -1,10 +1,11 @@
 # Description
-#   Script to welcome new users via a DM from hubot
+#   Hubot script o welcome new users to Rocket.Chat or a Rocket.Chat room (via a DM as default)
 #
 # Configuration:
 #   ROCKETCHAT_USER so the bot can introduce itself using its @username
 #   WELCOME_MESSAGE what the bot says to new users
-#   GLOBAL_WELCOME true (default) to welcome only once per user, false will welcome per once per user AND room
+#   DIRECT_WELCOME Bool (default true) to welcome users by direct message, instead of posting in the room
+#   GLOBAL_WELCOME Bool (default true) to welcome only once per user, false will welcome per once per user AND room
 #
 # Commands:
 #   hubot say welcome - Repeats the bot's welcome message.
@@ -18,13 +19,14 @@
 
 botName = process.env.ROCKETCHAT_USER or robot.name
 welcomeMessage = process.env.WELCOME_MESSAGE or "Welcome, I'm @#{ botName }. If you need help, just reply with `help`"
+directWelcome = if process.env.DIRECT_WELCOME == 'true' then true else false
 globalWelcome = if process.env.GLOBAL_WELCOME == 'true' then true else false
 isDebug = if process.env.HUBOT_LOG_LEVEL == 'debug' then true else false
 
 module.exports = (robot) ->
 
   welcoming = if globalWelcome then 'any new users' else 'new users in room'
-  robot.logger.info "Welcome-DM script is running, will send to #{ welcoming } saying:"
+  robot.logger.info "Welcome script is running, will send to #{ welcoming } saying:"
   robot.logger.info "\"#{ welcomeMessage }\""
 
   # get robot brain collection pointer when DB merged in
