@@ -18,8 +18,8 @@
 
 botName = process.env.ROCKETCHAT_USER or robot.name
 welcomeMessage = process.env.WELCOME_MESSAGE or "Welcome, I'm @#{ botName }. If you need help, just reply with `help`"
-globalWelcome = (process.env.GLOBAL_WELCOME == 'true') or true
-isDebug = (process.env.HUBOT_LOG_LEVEL == 'debug') or false
+globalWelcome = if process.env.GLOBAL_WELCOME == 'true' then true else false
+isDebug = if process.env.HUBOT_LOG_LEVEL == 'debug' then true else false
 
 module.exports = (robot) ->
 
